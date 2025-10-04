@@ -1,0 +1,4 @@
+(library
+ (name stlc)
+ (modules stlc syntax parser typechecker evaluator)
+)

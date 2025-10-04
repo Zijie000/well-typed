@@ -1,0 +1,4 @@
+(library
+ (name fsub)
+ (modules fsub syntax parser typechecker evaluator)
+)
