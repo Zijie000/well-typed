@@ -1,11 +1,22 @@
-Well‑Typed: Small Typed Language Implementations in OCaml
+# Well‑Typed: Small Typed Language Implementations in OCaml
 
-Overview
+## Overview 🏜️
+> I am doing this project to put into practice the knowledge from *Types and Programming Languages* by Benjamin C. Pierce, mainly to demonstrate my understanding of the concepts presented in the book.
 - A collection of small, well-scoped language implementations with parsing, type checking, and evaluation:
   - STLC (Simply Typed Lambda Calculus)
+    - TAPL Chapter 3 Untyped Arithmetic Expressions
+    - TAPL Chapter 5 The Untyped Lambda-Calculus
+    -  TAPL Chapter 8 Typed Arithmetic Expressions
+    - TAPL Chapter 9 Simply Typed Lambda-Calculus
   - System F (polymorphic lambda calculus)
+    - TAPL Chapter 22 Type Reconstruction
+    - TAPL Chapter 23 Universal Types
   - F<: (System F with subtyping)
+     - TAPL Chapter 15 Subtyping
+     - TAPL Chapter 16 Metatheory of Subtyping
+     - TAPL Chapter 23 Universal Types
   - Refs (simply typed lambda calculus with references)
+    - TAPL Chapter 11 Simple Extensions
 
 - Each language includes:
   - Parser/AST: parse strings to AST and pretty-print
@@ -13,7 +24,7 @@ Overview
   - Evaluator: small-step operational behavior via an interpreter
   - Tests: positive/negative programs to validate behavior
 
-Repository Layout
+## Repository Layout 🐫
 - src/stlc/
   - syntax.ml: Types and terms (Bool, Nat, Arrow). Pretty printers.
   - parser.ml: Lexer + parser for lambdas, if/then/else, succ/pred/iszero, application.
@@ -46,7 +57,7 @@ Repository Layout
   - run_tests.ml: End-to-end tests for parsing, typing, evaluation; includes error cases.
   - dune: Dune test configuration.
 
-Getting Started
+## Getting Started 🐫
 Prerequisites
 - OCaml (recommended via opam)
 - dune (build/test)
@@ -56,14 +67,14 @@ Prerequisites
   - `eval $(opam env)`
   - `opam install dune`
 
-Build and Test
+## Build and Test 🦂
 - From the repository root:
   - `dune build`
   - `dune runtest`
 - If you prefer running the test binary directly:
   - `dune exec tests/run_tests.exe`
 
-Usage Examples
+## Usage Examples 🌵
 - STLC:
   - Parse and type-check: (λ is written as backslash)
     - "(\\x:Bool. x) true"  → type: Bool, evaluates to: true
@@ -83,7 +94,7 @@ Usage Examples
   - "(\\r:Ref Nat. (\\x:Unit. !r) (r := succ !r)) (ref 0)" → type: Nat, eval: 1
   - "(\\r:Ref Nat. r := true) (ref 0)" → type error
 
-Design Notes
+## Design Notes
 - Parsers: simple, hand-written lexers and recursive-descent parsers. ASCII only; use backslash for lambda and keywords like “biglambda” or “forall”.
 - Typecheckers:
   - STLC: equality on types; function application checks argument type.
@@ -95,19 +106,19 @@ Design Notes
   - System F and F<: erase types at runtime.
   - Refs interpreter threads a store with integer locations.
 
-Conventions
+## Conventions
 - Error messages raise exceptions:
   - Parse_error for parsing
   - Type_error for typing
   - Runtime_error for evaluation
 - Pretty printers for types and values help testing and debugging.
 
-Extending
+## Extending
 - Add new terms/types in the `syntax.ml` files.
 - Update lexer/parser rules accordingly.
 - Extend type rules in `typechecker.ml`.
 - Update the evaluator with corresponding operational semantics.
 - Add tests in `tests/run_tests.ml` to cover success and failure cases.
 
-License
+## License
 - See LICENSE for details.
